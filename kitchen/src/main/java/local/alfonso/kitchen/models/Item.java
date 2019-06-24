@@ -15,12 +15,11 @@ public class Item extends Auditable
     @Column(nullable = false)
     private String itemname;
 
-    @Column(nullable = true)
     private int itemquantity;
 
     private String itemcategory;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userid")
     @JsonIgnoreProperties("items")
     private User user;
@@ -34,6 +33,14 @@ public class Item extends Auditable
         this.itemname = itemname;
         this.itemquantity = itemquantity;
         this.itemcategory = itemcategory;
+    }
+
+    public Item(String itemname, int itemquantity, String itemcategory, User user)
+    {
+        this.itemname = itemname;
+        this.itemquantity = itemquantity;
+        this.itemcategory = itemcategory;
+        this.user = user;
     }
 
     public long getItemid()

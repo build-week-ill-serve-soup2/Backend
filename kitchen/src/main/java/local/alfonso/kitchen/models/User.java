@@ -52,6 +52,14 @@ public class User extends Auditable
         this.userRoles = userRoles;
     }
 
+    public User(String username, String password, List<UserRoles> userRoles, List<Item> items)
+    {
+        this.username = username;
+        this.password = password;
+        this.userRoles = userRoles;
+        this.items = items;
+    }
+
     public long getUserid()
     {
         return userid;

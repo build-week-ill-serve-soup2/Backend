@@ -1,8 +1,10 @@
 package local.alfonso.kitchen;
 
+import local.alfonso.kitchen.models.Item;
 import local.alfonso.kitchen.models.Role;
 import local.alfonso.kitchen.models.User;
 import local.alfonso.kitchen.models.UserRoles;
+import local.alfonso.kitchen.services.ItemService;
 import local.alfonso.kitchen.services.RoleService;
 import local.alfonso.kitchen.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,8 @@ public class SeedData implements CommandLineRunner
     @Autowired
     UserService userService;
 
-
+    @Autowired
+    ItemService itemService;
 
     @Override
     public void run(String[] args) throws Exception
@@ -34,6 +37,8 @@ public class SeedData implements CommandLineRunner
         roleService.save(r1);
         roleService.save(r2);
         roleService.save(r3);
+
+
 
         // admin, data, user
         ArrayList<UserRoles> admins = new ArrayList<>();
@@ -65,5 +70,29 @@ public class SeedData implements CommandLineRunner
         users.add(new UserRoles(new User(), r2));
         User u5 = new User("Jane", "password", users);
         userService.save(u5);
+
+        Item i1 = new Item("Milk", 3, "Dairy");
+        Item i2 = new Item("Cheese", 1, "Dairy");
+        Item i3 = new Item("Chicken", 10, "Meat");
+
+        i1.setUser(u1);
+        i2.setUser(u2);
+        i3.setUser(u1);
+
+        itemService.save(i1);
+        itemService.save(i2);
+        itemService.save(i3);
+//
+//        itemService.save(i1);
+//        itemService.save(i2);
+//        itemService.save(i3);
+
+//        ArrayList<Item> dairyItems = new ArrayList<>();
+//        dairyItems.add(i1);
+//        dairyItems.add(i2);
+//
+//        ArrayList<Item> meatItem = new ArrayList<>();
+//        meatItem.add(i3);
+
     }
 }

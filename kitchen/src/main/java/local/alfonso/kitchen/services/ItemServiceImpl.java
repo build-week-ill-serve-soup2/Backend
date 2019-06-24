@@ -80,7 +80,6 @@ public class ItemServiceImpl implements ItemService
     @Override
     public Item update(Item item, long id)
     {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         Item currentItem = itemrepo.findById(id).orElseThrow(() -> new EntityNotFoundException(Long.toString(id)));
 
