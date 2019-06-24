@@ -42,7 +42,6 @@ public class SeedData implements CommandLineRunner
         Item i2 = new Item("Cheese", 1, "Dairy");
         Item i3 = new Item("Chicken", 10, "Meat");
 
-
         itemService.save(i1);
         itemService.save(i2);
         itemService.save(i3);
@@ -53,7 +52,6 @@ public class SeedData implements CommandLineRunner
 
         ArrayList<Item> meatItem = new ArrayList<>();
         meatItem.add(i3);
-
 
         // admin, data, user
         ArrayList<UserRoles> admins = new ArrayList<>();
@@ -85,7 +83,10 @@ public class SeedData implements CommandLineRunner
         users.add(new UserRoles(new User(), r2));
         User u5 = new User("Jane", "password", users);
         userService.save(u5);
-
+//
+//        i1.setItem_user(u1);
+//        i2.setItem_user(u1);
+//        i3.setItem_user(u1);
 
 
     }

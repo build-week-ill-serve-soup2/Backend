@@ -3,6 +3,7 @@ package local.alfonso.kitchen.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "items")
@@ -19,10 +20,9 @@ public class Item extends Auditable
 
     private String itemcategory;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userid")
-    @JsonIgnoreProperties("items")
-    private User user;
+    private User item_user;
 
     public Item()
     {
@@ -33,14 +33,6 @@ public class Item extends Auditable
         this.itemname = itemname;
         this.itemquantity = itemquantity;
         this.itemcategory = itemcategory;
-    }
-
-    public Item(String itemname, int itemquantity, String itemcategory, User user)
-    {
-        this.itemname = itemname;
-        this.itemquantity = itemquantity;
-        this.itemcategory = itemcategory;
-        this.user = user;
     }
 
     public long getItemid()
@@ -78,14 +70,14 @@ public class Item extends Auditable
         return itemcategory;
     }
 
-    public User getUser()
+    public User getItem_user()
     {
-        return user;
+        return item_user;
     }
 
-    public void setUser(User user)
+    public void setItem_user(User item_user)
     {
-        this.user = user;
+        this.item_user = item_user;
     }
 
     public void setItemcategory(String itemcategory)

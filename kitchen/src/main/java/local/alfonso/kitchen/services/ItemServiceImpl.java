@@ -4,8 +4,6 @@ import local.alfonso.kitchen.models.Item;
 import local.alfonso.kitchen.models.User;
 import local.alfonso.kitchen.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,14 +18,6 @@ public class ItemServiceImpl implements ItemService
     private ItemRepository itemrepo;
 
 
-    public List<Item> findItemsByUser(User user)
-    {
-        List<Item> list = new ArrayList<>();
-
-        list = itemrepo.findByUser(user);
-
-        return list;
-    }
 
     public List<Item> findItemsByCategory(String category)
     {
@@ -71,7 +61,7 @@ public class ItemServiceImpl implements ItemService
         newItem.setItemname(item.getItemname());
         newItem.setItemcategory(item.getItemcategory());
         newItem.setItemquantity(item.getItemquantity());
-        newItem.setUser(item.getUser());
+//        newItem.setItem_user(item.getItem_user());
 
         return itemrepo.save(newItem);
     }
@@ -100,9 +90,9 @@ public class ItemServiceImpl implements ItemService
                 currentItem.setItemquantity(item.getItemquantity());
             }
 
-            if (item.getUser() != null && item.getUser() != currentItem.getUser())
+            if (item.getItem_user() != null && item.getItem_user() != currentItem.getItem_user())
             {
-                currentItem.setUser(item.getUser());
+                currentItem.setItem_user(item.getItem_user());
             }
 
             return itemrepo.save(currentItem);
