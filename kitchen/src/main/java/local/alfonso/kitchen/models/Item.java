@@ -71,6 +71,16 @@ public class Item extends Auditable
         return itemcategory;
     }
 
+    public User getUser()
+    {
+        return user;
+    }
+
+    public void setUser(User user)
+    {
+        this.user = user;
+    }
+
     public void setItemcategory(String itemcategory)
     {
         this.itemcategory = itemcategory;
