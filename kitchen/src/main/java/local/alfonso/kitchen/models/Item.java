@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "items")
 public class Item extends Auditable
 {
     @Id
