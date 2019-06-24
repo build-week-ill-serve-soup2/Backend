@@ -1,7 +1,6 @@
 package local.alfonso.kitchen.services;
 
 import local.alfonso.kitchen.models.Item;
-import local.alfonso.kitchen.models.User;
 import local.alfonso.kitchen.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
