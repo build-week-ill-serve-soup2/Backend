@@ -14,5 +14,5 @@ public interface ItemService
 
     Item save(Item item);
 
-    Item update(Item item, long id);
+    Item findByName(String name);
 }

@@ -66,42 +66,56 @@ public class ItemServiceImpl implements ItemService
         return itemrepo.save(newItem);
     }
 
-    @Transactional
     @Override
-    public Item update(Item item, long id)
+    public Item findByName(String name)
     {
+        Item it = itemrepo.findByItemnameIgnoreCase(name);
 
-        Item currentItem = itemrepo.findById(id).orElseThrow(() -> new EntityNotFoundException(Long.toString(id)));
-
-        if (currentItem != null && id == currentItem.getItemid())
+        if (it != null)
         {
-            if (item.getItemname() != null)
-            {
-                currentItem.setItemname(item.getItemname());
-            }
-
-            if (item.getItemcategory() != null)
-            {
-                currentItem.setItemcategory(item.getItemcategory());
-            }
-
-            if (item.getItemquantity() != currentItem.getItemquantity())
-            {
-                currentItem.setItemquantity(item.getItemquantity());
-            }
-
-            if (item.getItem_user() != null && item.getItem_user() != currentItem.getItem_user())
-            {
-                currentItem.setItem_user(item.getItem_user());
-            }
-
-            return itemrepo.save(currentItem);
+            return it;
         } else
         {
-            throw new EntityNotFoundException(Long.toString(id) + "Not current item.");
+            throw new EntityNotFoundException(name);
         }
-
     }
+
+    //    @Transactional
+//    @Override
+//    public Item update(Item item, long id)
+//    {
+//
+//        Item currentItem = itemrepo.findById(id).orElseThrow(() -> new EntityNotFoundException(Long.toString(id)));
+//
+//        if (currentItem != null && id == currentItem.getItemid())
+//        {
+//            if (item.getItemname() != null)
+//            {
+//                currentItem.setItemname(item.getItemname());
+//            }
+//
+//            if (item.getItemcategory() != null)
+//            {
+//                currentItem.setItemcategory(item.getItemcategory());
+//            }
+//
+//            if (item.getItemquantity() != currentItem.getItemquantity())
+//            {
+//                currentItem.setItemquantity(item.getItemquantity());
+//            }
+//
+//            if (item.get() != null && item.getItem_user() != currentItem.getItem_user())
+//            {
+//                currentItem.setItem_user(item.getItem_user());
+//            }
+//
+//            return itemrepo.save(currentItem);
+//        } else
+//        {
+//            throw new EntityNotFoundException(Long.toString(id) + "Not current item.");
+//        }
+//
+//    }
 
 
 }

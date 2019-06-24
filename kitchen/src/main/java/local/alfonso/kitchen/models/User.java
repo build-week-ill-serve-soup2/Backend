@@ -33,9 +33,9 @@ public class User extends Auditable
     @JsonIgnoreProperties("user")
     private List<UserRoles> userRoles = new ArrayList<>();
 
-    @OneToMany(mappedBy = "item_user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")
-    private List<Item> items = new ArrayList<>();
+    private List<UserItems> userItems = new ArrayList<>();
 
 
     public User()
@@ -53,7 +53,7 @@ public class User extends Auditable
         this.userRoles = userRoles;
     }
 
-    public User(String username, String password, List<UserRoles> userRoles, List<Item> items)
+    public User(String username, String password, List<UserRoles> userRoles, List<UserItems> userItems)
     {
         setUsername(username);
         setPassword(password);
@@ -63,11 +63,11 @@ public class User extends Auditable
         }
         this.userRoles = userRoles;
 
-        for (Item i : items)
+        for (UserItems ui : userItems)
         {
-            i.setItem_user(this);
+            ui.setUser(this);
         }
-        this.items = items;
+        this.userItems = userItems;
     }
 
     public long getUserid()
@@ -116,15 +116,6 @@ public class User extends Auditable
         this.userRoles = userRoles;
     }
 
-    public List<Item> getItems()
-    {
-        return items;
-    }
-
-    public void setItems(List<Item> items)
-    {
-        this.items = items;
-    }
 
     public List<SimpleGrantedAuthority> getAuthority()
     {
@@ -139,5 +130,13 @@ public class User extends Auditable
         return rtnList;
     }
 
+    public List<UserItems> getUserItems()
+    {
+        return userItems;
+    }
 
+    public void setUserItems(List<UserItems> userItems)
+    {
+        this.userItems = userItems;
+    }
 }
