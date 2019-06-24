@@ -38,6 +38,21 @@ public class SeedData implements CommandLineRunner
         roleService.save(r2);
         roleService.save(r3);
 
+        Item i1 = new Item("Milk", 3, "Dairy");
+        Item i2 = new Item("Cheese", 1, "Dairy");
+        Item i3 = new Item("Chicken", 10, "Meat");
+
+
+        itemService.save(i1);
+        itemService.save(i2);
+        itemService.save(i3);
+
+        ArrayList<Item> dairyItems = new ArrayList<>();
+        dairyItems.add(i1);
+        dairyItems.add(i2);
+
+        ArrayList<Item> meatItem = new ArrayList<>();
+        meatItem.add(i3);
 
 
         // admin, data, user
@@ -45,14 +60,14 @@ public class SeedData implements CommandLineRunner
         admins.add(new UserRoles(new User(), r1));
         admins.add(new UserRoles(new User(), r2));
         admins.add(new UserRoles(new User(), r3));
-        User u1 = new User("admin", "password", admins);
+        User u1 = new User("admin", "password", admins, dairyItems);
         userService.save(u1);
 
         // data, user
         ArrayList<UserRoles> datas = new ArrayList<>();
         datas.add(new UserRoles(new User(), r3));
         datas.add(new UserRoles(new User(), r2));
-        User u2 = new User("cinnamon", "1234567", datas);
+        User u2 = new User("cinnamon", "1234567", datas, dairyItems);
         userService.save(u2);
 
         // user
@@ -71,28 +86,7 @@ public class SeedData implements CommandLineRunner
         User u5 = new User("Jane", "password", users);
         userService.save(u5);
 
-        Item i1 = new Item("Milk", 3, "Dairy");
-        Item i2 = new Item("Cheese", 1, "Dairy");
-        Item i3 = new Item("Chicken", 10, "Meat");
 
-        i1.setUser(u1);
-        i2.setUser(u2);
-        i3.setUser(u1);
-
-        itemService.save(i1);
-        itemService.save(i2);
-        itemService.save(i3);
-//
-//        itemService.save(i1);
-//        itemService.save(i2);
-//        itemService.save(i3);
-
-//        ArrayList<Item> dairyItems = new ArrayList<>();
-//        dairyItems.add(i1);
-//        dairyItems.add(i2);
-//
-//        ArrayList<Item> meatItem = new ArrayList<>();
-//        meatItem.add(i3);
 
     }
 }
