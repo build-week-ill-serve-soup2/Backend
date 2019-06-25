@@ -1,5 +1,6 @@
 package local.alfonso.kitchen.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -20,9 +21,10 @@ public class Item extends Auditable
 
     private String itemcategory;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userid")
-    private User item_user;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "userid", nullable = false)
+    @JsonIgnore
+    private User user;
 
     public Item()
     {
@@ -70,14 +72,14 @@ public class Item extends Auditable
         return itemcategory;
     }
 
-    public User getItem_user()
+    public User getUser()
     {
-        return item_user;
+        return user;
     }
 
-    public void setItem_user(User item_user)
+    public void setUser(User user)
     {
-        this.item_user = item_user;
+        this.user = user;
     }
 
     public void setItemcategory(String itemcategory)

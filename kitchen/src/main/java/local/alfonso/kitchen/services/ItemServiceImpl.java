@@ -1,7 +1,6 @@
 package local.alfonso.kitchen.services;
 
 import local.alfonso.kitchen.models.Item;
-import local.alfonso.kitchen.models.User;
 import local.alfonso.kitchen.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,11 +18,18 @@ public class ItemServiceImpl implements ItemService
 
 
 
+    @Override
     public List<Item> findItemsByCategory(String category)
     {
-        List<Item> categorylist = new ArrayList<>();
-        categorylist = itemrepo.findByItemcategory(category);
+        List<Item> categorylist = itemrepo.findByItemcategory(category);
         return categorylist;
+    }
+
+    @Override
+    public List<Item> findByUserId(long id)
+    {
+        List<Item> list = itemrepo.findByUserUserid(id);
+        return list;
     }
 
     @Override
@@ -61,7 +67,7 @@ public class ItemServiceImpl implements ItemService
         newItem.setItemname(item.getItemname());
         newItem.setItemcategory(item.getItemcategory());
         newItem.setItemquantity(item.getItemquantity());
-//        newItem.setItem_user(item.getItem_user());
+        newItem.setUser(item.getUser());
 
         return itemrepo.save(newItem);
     }
@@ -90,9 +96,9 @@ public class ItemServiceImpl implements ItemService
                 currentItem.setItemquantity(item.getItemquantity());
             }
 
-            if (item.getItem_user() != null && item.getItem_user() != currentItem.getItem_user())
+            if (item.getUser() != null && item.getUser() != currentItem.getUser())
             {
-                currentItem.setItem_user(item.getItem_user());
+                currentItem.setUser(item.getUser());
             }
 
             return itemrepo.save(currentItem);

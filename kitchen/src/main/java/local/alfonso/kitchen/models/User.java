@@ -6,7 +6,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
-import java.awt.font.FontRenderContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,11 +32,6 @@ public class User extends Auditable
     @JsonIgnoreProperties("user")
     private List<UserRoles> userRoles = new ArrayList<>();
 
-    @OneToMany(mappedBy = "item_user", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("user")
-    private List<Item> items = new ArrayList<>();
-
-
     public User()
     {
     }
@@ -53,22 +47,6 @@ public class User extends Auditable
         this.userRoles = userRoles;
     }
 
-    public User(String username, String password, List<UserRoles> userRoles, List<Item> items)
-    {
-        setUsername(username);
-        setPassword(password);
-        for (UserRoles ur : userRoles)
-        {
-            ur.setUser(this);
-        }
-        this.userRoles = userRoles;
-
-        for (Item i : items)
-        {
-            i.setItem_user(this);
-        }
-        this.items = items;
-    }
 
     public long getUserid()
     {
@@ -114,16 +92,6 @@ public class User extends Auditable
     public void setUserRoles(List<UserRoles> userRoles)
     {
         this.userRoles = userRoles;
-    }
-
-    public List<Item> getItems()
-    {
-        return items;
-    }
-
-    public void setItems(List<Item> items)
-    {
-        this.items = items;
     }
 
     public List<SimpleGrantedAuthority> getAuthority()
