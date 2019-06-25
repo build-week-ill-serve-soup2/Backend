@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
@@ -38,6 +39,21 @@ public class UserController
         return new ResponseEntity<>(myUsers, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/getuser/{name}", produces = {"application/json"})
+    public ResponseEntity<?> getUser(HttpServletRequest request, @PathVariable String name)
+    {
+        logger.trace(request.getRequestURI() + " accessed.");
+
+        User user = userService.findUserByName(name);
+
+        if (user == null)
+        {
+            throw new EntityNotFoundException("User with the name " + name + " does not exist.");
+        }
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping(value = "/user/{userId}", produces = {"application/json"})
@@ -58,7 +74,6 @@ public class UserController
 
         return new ResponseEntity<>(authentication.getPrincipal(), HttpStatus.OK);
     }
-
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping(value = "/user", consumes = {"application/json"}, produces = {"application/json"})
