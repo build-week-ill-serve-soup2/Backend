@@ -22,5 +22,6 @@ public interface ItemRepository extends CrudRepository<Item, Long>
 
     List<Item> findByItemcategory(String category);
 
-    Item findByItemnameIgnoreCase(String name);
+
+    List<Item> findByUserUserid(Long id);
 }
