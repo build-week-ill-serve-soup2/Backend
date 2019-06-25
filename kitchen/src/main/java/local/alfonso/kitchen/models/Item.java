@@ -19,6 +19,10 @@ public class Item extends Auditable
 
     private int itemquantity;
 
+    private int itemthreshold;
+
+    private String itemunit;
+
     private String itemcategory;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -85,5 +89,25 @@ public class Item extends Auditable
     public void setItemcategory(String itemcategory)
     {
         this.itemcategory = itemcategory;
+    }
+
+    public int getItemthreshold()
+    {
+        return itemthreshold;
+    }
+
+    public void setItemthreshold(int itemthreshold)
+    {
+        this.itemthreshold = itemthreshold;
+    }
+
+    public String getItemunit()
+    {
+        return itemunit;
+    }
+
+    public void setItemunit(String itemunit)
+    {
+        this.itemunit = itemunit;
     }
 }
