@@ -91,7 +91,7 @@ public class ItemServiceImpl implements ItemService
                 currentItem.setItemcategory(item.getItemcategory());
             }
 
-            if (item.getItemquantity() != currentItem.getItemquantity())
+            if (item.getItemquantity() >= 1)
             {
                 currentItem.setItemquantity(item.getItemquantity());
             }
