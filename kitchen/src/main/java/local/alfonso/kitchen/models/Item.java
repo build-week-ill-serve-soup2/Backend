@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,7 @@ public class Item extends Auditable
     private int itemquantity;
 
     private String itemcategory;
+
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "userid", nullable = false)
@@ -80,10 +82,11 @@ public class Item extends Auditable
     public void setUser(User user)
     {
         this.user = user;
+
     }
 
-    public void setItemcategory(String itemcategory)
+    public void setUserItems(List<UserItems> userItems)
     {
-        this.itemcategory = itemcategory;
+        this.userItems = userItems;
     }
 }
