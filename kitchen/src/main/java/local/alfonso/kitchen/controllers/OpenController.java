@@ -53,7 +53,8 @@ public class OpenController
         responseHeaders.setLocation(newRestaurantURI);
 
 
-        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
+
+        return new ResponseEntity<>(newuser, responseHeaders, HttpStatus.CREATED);
     }
 
 }
