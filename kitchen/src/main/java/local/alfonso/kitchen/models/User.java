@@ -6,7 +6,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
-import java.awt.font.FontRenderContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,11 +32,6 @@ public class User extends Auditable
     @JsonIgnoreProperties("user")
     private List<UserRoles> userRoles = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("user")
-    private List<UserItems> userItems = new ArrayList<>();
-
-
     public User()
     {
     }
@@ -51,23 +45,6 @@ public class User extends Auditable
             ur.setUser(this);
         }
         this.userRoles = userRoles;
-    }
-
-    public User(String username, String password, List<UserRoles> userRoles, List<UserItems> userItems)
-    {
-        setUsername(username);
-        setPassword(password);
-        for (UserRoles ur : userRoles)
-        {
-            ur.setUser(this);
-        }
-        this.userRoles = userRoles;
-
-        for (UserItems ui : userItems)
-        {
-            ui.setUser(this);
-        }
-        this.userItems = userItems;
     }
 
     public long getUserid()
@@ -116,7 +93,6 @@ public class User extends Auditable
         this.userRoles = userRoles;
     }
 
-
     public List<SimpleGrantedAuthority> getAuthority()
     {
         List<SimpleGrantedAuthority> rtnList = new ArrayList<>();
@@ -128,15 +104,5 @@ public class User extends Auditable
         }
 
         return rtnList;
-    }
-
-    public List<UserItems> getUserItems()
-    {
-        return userItems;
-    }
-
-    public void setUserItems(List<UserItems> userItems)
-    {
-        this.userItems = userItems;
     }
 }
