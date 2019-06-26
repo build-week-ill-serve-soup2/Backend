@@ -93,7 +93,7 @@ public class ItemServiceImpl implements ItemService
                 currentItem.setItemcategory(item.getItemcategory());
             }
 
-            if (item.getItemquantity() >= 1)
+            if (item.getItemquantity() >= 0)
             {
                 currentItem.setItemquantity(item.getItemquantity());
             }
@@ -103,7 +103,7 @@ public class ItemServiceImpl implements ItemService
                 currentItem.setUser(item.getUser());
             }
 
-            if (item.getItemthreshold() >= 1)
+            if (item.getItemthreshold() >= 0)
             {
                 currentItem.setItemthreshold(item.getItemthreshold());
             }
