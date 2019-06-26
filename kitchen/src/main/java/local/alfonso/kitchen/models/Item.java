@@ -20,6 +20,10 @@ public class Item extends Auditable
 
     private int itemquantity;
 
+    private int itemthreshold;
+
+    private String itemunit;
+
     private String itemcategory;
 
 
@@ -88,5 +92,25 @@ public class Item extends Auditable
     public void setUserItems(List<UserItems> userItems)
     {
         this.userItems = userItems;
+    }
+
+    public int getItemthreshold()
+    {
+        return itemthreshold;
+    }
+
+    public void setItemthreshold(int itemthreshold)
+    {
+        this.itemthreshold = itemthreshold;
+    }
+
+    public String getItemunit()
+    {
+        return itemunit;
+    }
+
+    public void setItemunit(String itemunit)
+    {
+        this.itemunit = itemunit;
     }
 }

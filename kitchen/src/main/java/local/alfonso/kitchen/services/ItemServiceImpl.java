@@ -68,6 +68,8 @@ public class ItemServiceImpl implements ItemService
         newItem.setItemcategory(item.getItemcategory());
         newItem.setItemquantity(item.getItemquantity());
         newItem.setUser(item.getUser());
+        newItem.setItemthreshold(item.getItemthreshold());
+        newItem.setItemunit(item.getItemunit());
 
         return itemrepo.save(newItem);
     }
@@ -91,7 +93,7 @@ public class ItemServiceImpl implements ItemService
                 currentItem.setItemcategory(item.getItemcategory());
             }
 
-            if (item.getItemquantity() != currentItem.getItemquantity())
+            if (item.getItemquantity() >= 0)
             {
                 currentItem.setItemquantity(item.getItemquantity());
             }
@@ -99,6 +101,16 @@ public class ItemServiceImpl implements ItemService
             if (item.getUser() != null && item.getUser() != currentItem.getUser())
             {
                 currentItem.setUser(item.getUser());
+            }
+
+            if (item.getItemthreshold() >= 0)
+            {
+                currentItem.setItemthreshold(item.getItemthreshold());
+            }
+
+            if(item.getItemunit() != null)
+            {
+                currentItem.setItemunit(item.getItemunit());
             }
 
             return itemrepo.save(currentItem);
