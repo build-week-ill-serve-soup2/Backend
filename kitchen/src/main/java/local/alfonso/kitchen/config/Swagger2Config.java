@@ -20,7 +20,7 @@ public class Swagger2Config
     {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("local.alfonso.kitchen"))
                 .paths(PathSelectors.any())
                 .build()
                 .useDefaultResponseMessages(false) // Allows only my exception responses
@@ -30,9 +30,9 @@ public class Swagger2Config
 
     private ApiInfo apiEndPointsInfo()
     {
-        return new ApiInfoBuilder().title("Java String Back End Starting Project")
-                .description("A starting application for developing Java Spring Back End Projects")
-                .contact(new Contact("John Mitchell", "http://www.lambdaschool.com", "john@lambdaschool.com"))
+        return new ApiInfoBuilder().title("Serving Soup Back-End")
+                .description("The documentation to the back-end for the Serving Soup project")
+                .contact(new Contact("Alfonso Garcia", "http://www.lambdaschool.com", "alfonso.garcia2324@gmail.com"))
                 .license("MIT").licenseUrl("https://github.com/LambdaSchool/java-starthere/blob/master/LICENSE")
                 .version("1.0.0").build();
     }
